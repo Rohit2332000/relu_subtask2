@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+requests
+beautifulsoup4
+lxml
+rapidfuzz
+google-genai
+python-dotenv
+streamlit
+pandas
+tqdm
