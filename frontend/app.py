@@ -6,7 +6,7 @@ import pandas as pd
 # CONFIG
 # -----------------------------
 
-BACKEND_URL = "http://127.0.0.1:8000"
+BACKEND_URL = "https://relu-subtask2-tk4u.onrender.com"
 
 st.set_page_config(
     page_title="Company Intelligence Platform",
