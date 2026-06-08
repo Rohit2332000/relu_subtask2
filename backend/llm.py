@@ -1,14 +1,16 @@
 import json
 import re
+import os
 
 from dotenv import load_dotenv
-from google import genai
-import os
+from langchain_groq import ChatGroq
 
 load_dotenv()
 
-client = genai.Client(
-    api_key=os.getenv("GEMINI_API_KEY")
+llm = ChatGroq(
+    model="llama-3.3-70b-versatile",
+    api_key=os.getenv("GROQ_API_KEY"),
+    temperature=0
 )
 
 
@@ -60,12 +62,9 @@ Return:
 }}
 """
 
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=prompt
-    )
+    response = llm.invoke(prompt)
 
-    text = response.text.strip()
+    text = response.content.strip()
 
     text = text.replace(
         "```json",
@@ -83,7 +82,7 @@ Return:
 
     if not match:
         raise Exception(
-            "Unable to parse Gemini response"
+            f"Unable to parse LLM response: {text}"
         )
 
     return json.loads(
